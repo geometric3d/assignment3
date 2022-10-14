@@ -146,7 +146,7 @@ kp, des = sift.detectAndCompute(gray, None)
 
 # Compute possible matches in any way you can think of.
 ```
-- Use RANSAC with 7-point algorithm to get `F`.
+- Use RANSAC with 7-point or 8-point algorithm to get `F`.
 - Show the epipolar lines from the estimated `F`.
 
 **Submission**
