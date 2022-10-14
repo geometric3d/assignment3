@@ -81,7 +81,7 @@ In this question, you will use the image sets released in `q1a` and `q1b` and ca
 **Submission** 
  * Brief explanation of your RANSAC implementation and criteria for considering inliers.
  * Report your best solution and plot the epipolar lines -- show lines from fundamental matrix that you calculate over the inliers.
- * Visualization (graph plot) of % of inliers vs. # of RANSAC iterations. See the example below:
+ * Visualization (graph plot) of % of inliers vs. # of RANSAC iterations (see the example below). You should report such plots for both, the 7-pt and 8-pt Algorithms in the inner loop of RANSAC.
 
  <img src="figs/inlier_ratio.png" width="300"> 
 
@@ -124,7 +124,7 @@ First triangulate the 3D points, then use `scipy.optimize.least_squares` to opti
     | -----------  | ----------| ---------- |
     |<img src="figs/q4corresp.png" width="400">  | <img src="figs/noisy2.png" width="300"> | <img src="figs/bundle_adjustment2.png" width="300"> 
 
-## Q5: Bonus 2 - Fundamental matrix estimatation on your own images. (10 points)
+## Q5: Bonus 2 - Fundamental matrix estimation on your own images. (10 points)
 
 Capture / find at least 2 pairs of images, estimate the fundamental matrix.
 
@@ -143,6 +143,8 @@ gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 sift = cv2.xfeatures2d.SIFT_create()
 
 kp, des = sift.detectAndCompute(gray, None)
+
+# Compute possible matches in any way you can think of.
 ```
 - Use RANSAC with 7-point algorithm to get `F`.
 - Show the epipolar lines from the estimated `F`.
