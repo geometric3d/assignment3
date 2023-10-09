@@ -3,7 +3,7 @@
 ## Instructions
 * Late Submission Policy: See the late submission policy [here](https://geometric3d.github.io/pages/assignments/hw0.html).
 * Submitting your work: Check the instructions for submission [here](https://geometric3d.github.io/pages/assignments/hw0.html).
-* There are `5` questions in this assignment, where the last two are bonus questions. Make sure you follow the instructions and submit the answers as required.
+* There are `6` questions in this assignment, where the last two are bonus questions. Make sure you follow the instructions and submit the answers as required.
 
 ## Overview
 
@@ -65,7 +65,7 @@ There are probably multiple solutions from the 7-point algorithm. You need to ch
  * Epipolar lines: Similar to the above, you need to show lines from fundamental matrix over the two images.
 
 
-## Q2: RANSAC with 7-point and 8-point algorithm (30 points)
+## Q2: RANSAC with 7-point and 8-point algorithm (20 points)
 
 In some real world applications, manually determining correspondences is infeasible and often there will be noisy coorespondences. Fortunately, the RANSAC method can be applied to the problem of fundamental matrix estimation.
 
@@ -86,7 +86,7 @@ In this question, you will use the image sets released in `q1a` and `q1b` and ca
  <img src="figs/inlier_ratio.png" width="300"> 
 
 
-## Q3: Triangulation (30 points)
+## Q3: Triangulation (20 points)
 
 Given 2D correspondences and 2 camera matrices, your goal is to triangulate the 3D points. 
 
@@ -103,28 +103,21 @@ Given 2D correspondences and 2 camera matrices, your goal is to triangulate the 
 
 <img src="figs/result.png" width="300"> 
 
-## Q4: Bonus 1 - Bundle Adjustment (10 points)
+## Q4: Reconstruct your own scene! (20 points)
+For this part, you will run an off-the-shelf incremental SfM toolbox such as [COLMAP](https://github.com/colmap/pycolmap) on your own captured multi-view images. Please submit a gif of the reconstructed 3d structure and the location of cameras.
 
-Given 2D correspondences and 2 noisy camera matrices, your goal is to reconstruct the 3D structure as well as optimize noisy camera matrices.
+For this reconstruction, you can choose your own data. This data could either be a sequence having rigid objects, any object (for e.g. a mug or a vase in your vicinity), or any scene you wish to reconstruct in 3D.
 
-**Data**
-- We provide the 2 images: `data/q4/img1.jpg` and `data/q4/img2.jpg`. 
-- We provide the 2 camera matrices in `data/q4/P1_noisy.npy` and `data/q4/P2_noisy.npy`, both of which are `3x4` matrices.
-- We provide 2D correspondences in `data/q4/pts1.npy` and `data/q4/pts2.npy`, where `pts1` and `pts2` are `Nx2` matrices. Below is a visualization of the correspondences:
+**Submissions**
+-  Multi-view input images.
+-  A gif to visualize the reconstruction of the scene and location of cameras (extrinsics).
+-  Run this on at least 2 sequences / objects / scenes
 
-**Hint**
+  | Example Multi-view images  | Output | 
+  | ----------- | ----------- | 
+  |  <img src="figs/multi-sacre-cour.jpg" width="400">  | <img src="figs/monument_reconstruction.gif" width="400"> |  
 
-First triangulate the 3D points, then use `scipy.optimize.least_squares` to optimize the reprojection error.
-
-**Submission**
-- Brief explanation of your implementation.
-- A colored point cloud before and after bundle adjustment:
-
-    2D Correspondences | Before Bundle Adjustment  | After Bundle Adjustment |
-    | -----------  | ----------| ---------- |
-    |<img src="figs/q4corresp.png" width="400">  | <img src="figs/noisy2.png" width="300"> | <img src="figs/bundle_adjustment2.png" width="300"> 
-
-## Q5: Bonus 2 - Fundamental matrix estimation on your own images. (10 points)
+## Q5: Bonus 1 - Fundamental matrix estimation on your own images. (10 points)
 
 Capture / find at least 2 pairs of images, estimate the fundamental matrix.
 
@@ -153,6 +146,18 @@ kp, des = sift.detectAndCompute(gray, None)
 - Brief explanation of your implementation.
 - Epipolar lines.
 
+## Q6: Bonus 2 - Stress test the hyperparameters of COLMAP (10 points)
+For this part, we want you to `stress test` or play with hyper-parameters in the COLMAP system. We want you to pick `2` interesting questions concerning this toolbox and for each of the question, we want you to provide a brief explanation with supporting qualitative or quantitative evidence. Some example question suggestions are:
+
+-  What happens if we reduce number of input images?
+-  Under what scenario and conditions does the reconstruction pipeline breaks?
+-  What happens if we play with some tolerance parameters?
+
+Above mentioned are just suggestions for you to play around the toolbox. Feel free to try anything you think could be interesting, and report back the findings.
+
+
+**Submissions**
+-  `2` questions and supporting explanations.
 
 
 ## What you can *not* do
