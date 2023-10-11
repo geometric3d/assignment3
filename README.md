@@ -18,7 +18,7 @@ Given two images from the [Co3D dataset](https://ai.facebook.com/datasets/CO3D-d
 
 **Data**
 
-We provide 2 sets of two-view images along with the corresponding points in the two images as a `$object_corresp_raw.npz` file. Within each `.npz` file, the fields `pts1` and `pts2` are `N × 2` matrices corresponding to the `(x, y)` coordinates of the N points in the first and second image repectively. 
+We provide 2 sets of two-view images along with the corresponding points in the two images as a `$object_corresp_raw.npz` file. Within each `.npz` file, the fields `pts1` and `pts2` are `N × 2` matrices corresponding to the `(x, y)` coordinates of the N points in the first and second image repectively. You can use >= 8 corresponding points (with better solutions given more constraints).
 
  * Run your code on the 2 sets of `2` images provided in the `data/q1a` folder for this question.
 
