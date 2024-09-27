@@ -18,7 +18,7 @@ Given two images from the [Co3D dataset](https://ai.facebook.com/datasets/CO3D-d
 
 **Data**
 
-We provide 2 sets of two-view images along with the corresponding points in the two images as a `$object_corresp_raw.npz` file. Within each `.npz` file, the fields `pts1` and `pts2` are `N × 2` matrices corresponding to the `(x, y)` coordinates of the N points in the first and second image repectively. You can use >= 8 corresponding points (with better solutions given more constraints).
+We provide 2 sets of two-view images along with the corresponding points in the two images as a `corresp.npz` file. Within each `.npz` file, the fields `pts1` and `pts2` are `8 × 2` matrices corresponding to the `(x, y)` coordinates of the N points in the first and second image respectively. 
 
  * Run your code on the 2 sets of `2` images provided in the `data/q1a` folder for this question.
 
@@ -26,14 +26,16 @@ We provide 2 sets of two-view images along with the corresponding points in the 
  * Brief explanation of your implementation.
  * Epipolar lines: Show lines from fundamental matrix over the two images. See the following example figure:
 
-| F-matrix visualizations |
-| -----------  |
-| <img src="figs/epipolar_line_correspondences.jpg" width="700"> |
+| Viewpoint 1 (Points)     | Viewpoint 2 (Epipolar Lines) |
+|--------------------------|------------------------------|
+| ![](figs/q1a_bench1.jpg) | ![](figs/q1a_bench2.jpg)     |
+
+<!-- | ![](figs/q1a_remote1.jpg) | ![](figs/q1a_remote2.jpg) | -->
 
 
 ### (A2) E matrix using 8-point algorithm (5 points)
 
-Given the estimated fundamental matrix `F` (from above) and intrinsic matrices `K1` and `K2` (that we provide as `intrinsic_matrices_$object.npz`), you need to compute the essential matrix `E`.
+Given the estimated fundamental matrix `F` (from above) and intrinsic matrices `K1` and `K2` (that we provide as `intrinsics.npz`), you need to compute the essential matrix `E`.
 
 **Submission** 
  * Brief explanation of your implementation.
@@ -46,11 +48,13 @@ Since the fundamental matrix only has 7 degrees of freedom, it is possible to ca
 
 **Data**
 
-We provide `$object_7_point_corresp.npz` that consists of 7 precise correspondences (shown below) for you to run 7-point algorithm. 
+We provide `corresp.npz` that consists of 7 precise correspondences (shown below) for you to run 7-point algorithm. 
 
-| 7-point correspondence visualization  |
-| -----------  |
-| <img src="figs/q1b_7point_data.jpg" width="700"> |
+| Viewpoint 1                | Viewpoint 2                |
+|----------------------------|----------------------------|
+| ![](figs/q1b_hydrant1.jpg) | ![](figs/q1b_hydrant2.jpg) |
+
+<!-- | ![](figs/q1b_ball_1.jpg) | ![](figs/q1b_ball_2.jpg)     | -->
 
 
  * Run your code on the 2 sets of `2` images provided in the `data/q1b` folder for this question.
@@ -67,14 +71,14 @@ There are probably multiple solutions from the 7-point algorithm. You need to ch
 
 ## Q2: RANSAC with 7-point and 8-point algorithm (20 points)
 
-In some real world applications, manually determining correspondences is infeasible and often there will be noisy coorespondences. Fortunately, the RANSAC method can be applied to the problem of fundamental matrix estimation.
+In some real world applications, manually determining correspondences is infeasible and often there will be noisy correspondences. Fortunately, the RANSAC method can be applied to the problem of fundamental matrix estimation.
 
 **Data**
 
-In this question, you will use the image sets released in `q1a` and `q1b` and calculate the `F` matrix using both 7-point and 8-point algorithm with RANSAC. The given correspondences `$object_corresp_raw.npz` consists potential inlier matches. Within each `.npz` file, the fields `pts1` and `pts2` are `N × 2` matrices corresponding to the `(x, y)` coordinates of the N points in the first and second image repectively. 
+In this question, you will use the image sets released in `q1a` and `q1b` and calculate the `F` matrix using both 7-point and 8-point algorithm with RANSAC. The given correspondences `corresp_noisy.npz` consists potential inlier matches. Within each `.npz` file, the fields `pts1` and `pts2` are `N × 2` matrices corresponding to the `(x, y)` coordinates of the N points in the first and second image respectively. 
 
 **Hint**
-- There are around 50-60% of inliers in the provided data.
+- There are around 40-70% of inliers in the provided data.
 - Pick the number of iterations and tolerance of error carefully to get reasonable `F`.
 
 
@@ -83,7 +87,7 @@ In this question, you will use the image sets released in `q1a` and `q1b` and ca
  * Report your best solution and plot the epipolar lines -- show lines from fundamental matrix that you calculate over the inliers.
  * Visualization (graph plot) of % of inliers vs. # of RANSAC iterations (see the example below). You should report such plots for both, the 7-pt and 8-pt Algorithms in the inner loop of RANSAC.
 
- <img src="figs/inlier_ratio.png" width="300"> 
+![](figs/q2_ransac_ratio.png)
 
 
 ## Q3: Triangulation (20 points)
@@ -113,9 +117,9 @@ For this reconstruction, you can choose your own data. This data could either be
 -  A gif to visualize the reconstruction of the scene and location of cameras (extrinsics).
 -  Run this on at least 2 sequences / objects / scenes
 
-  | Example Multi-view images  | Output | 
-  | ----------- | ----------- | 
-  |  <img src="figs/multi-sacre-cour.jpg" width="400">  | <img src="figs/monument_reconstruction.gif" width="400"> |  
+  | Example Multi-view images                         | Output                                                   |
+  |---------------------------------------------------|----------------------------------------------------------|
+  | <img src="figs/multi-sacre-cour.jpg" width="400"> | <img src="figs/monument_reconstruction.gif" width="400"> |
 
 ## Q5: Bonus 1 - Fundamental matrix estimation on your own images. (10 points)
 
