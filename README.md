@@ -1,9 +1,9 @@
 # HW3: 3D reconstruction
 
 ## Instructions
-* Late Submission Policy: See the late submission policy [here](https://geometric3d.github.io/pages/assignments/hw0.html).
-* Submitting your work: Check the instructions for submission [here](https://geometric3d.github.io/pages/assignments/hw0.html).
+* Submitting your work: Check the instructions for submission and the late submission policy [here](https://geometric3d.github.io/submission.html).
 * There are `6` questions in this assignment, where the last two are bonus questions. Make sure you follow the instructions and submit the answers as required.
+* Make sure you review your submitted webpage and ensure the images and formulas are showing up correctly.
 
 ## Overview
 
